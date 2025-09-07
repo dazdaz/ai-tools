@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 create_project.py - Creates project folder structure and files from a formatted text file
-Typically generates folders and coopies content from output from the Claude Opus 4.1 LLM
+Used to create folders and copies content into those, created for use with Claude Opus 4.1 Opus LLM
 Usage: python create_project.py <input_file> [output_directory]
 """
 
