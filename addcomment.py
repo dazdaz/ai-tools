@@ -25,8 +25,11 @@ COMMENT_STYLES: Dict[str, Tuple[str, str, str]] = {
     '.tsx': ('// ', '', ''),
     '.jsx': ('// ', '', ''),
     
+    # Kotlin
+    '.kt': ('// ', '', ''),  # Added support for Kotlin
+    
     # Dart
-    '.dart': ('// ', '', ''),  # Support for Dart
+    '.dart': ('// ', '', ''),
     
     # Additional common formats
     '.html': ('<!-- ', ' -->', ''),
@@ -189,6 +192,7 @@ Supported file types:
   .ts - TypeScript
   .tsx - TypeScript React
   .jsx - JavaScript React
+  .kt - Kotlin
   .dart - Dart
   .html - HTML
   .xml - XML
@@ -196,7 +200,6 @@ Supported file types:
   .rb - Ruby
   .yaml - YAML
   .yml - YAML
-
 Examples:
   %(prog)s file1.py file2.js file3.css
   %(prog)s -d ./src --recursive
