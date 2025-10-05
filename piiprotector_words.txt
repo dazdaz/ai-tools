@@ -1,0 +1,21 @@
+# PII Protector Configuration File
+# Add one word or phrase per line that you want to mask
+# Lines starting with # are comments and will be ignored
+
+# Personal Information
+John Doe
+Jane Smith
+john.doe@example.com
+jane.smith@example.com
+
+# Project Names
+Project Alpha
+Project Beta
+SecretProject
+
+# Company/Client Information
+Acme Corporation
+Tech Solutions Inc.
+Client Name
+
+# Add your own PII words below:
