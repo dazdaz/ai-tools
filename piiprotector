@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""
+PII Protector - A script to mask personally identifiable information from text.
+Usage: cat input.txt | piiprotector | pbcopy
+"""
+
+import sys
+import re
+import os
+import argparse
+from pathlib import Path
+
+def load_pii_words(config_file):
+    """Load PII words from the configuration file."""
+    pii_words = []
+    try:
+        with open(config_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#'):
+                    pii_words.append(line)
+    except FileNotFoundError:
+        print(f"Warning: PII config file '{config_file}' not found. No words will be masked.", file=sys.stderr)
+    return pii_words
+
+def mask_pii(text, pii_words, mask_char='*'):
+    """Replace PII words in the text with mask characters."""
+    if not pii_words:
+        return text
+
+    # Create a regex pattern that matches any of the PII words (case-insensitive)
+    pattern = re.compile('|'.join(re.escape(word) for word in pii_words), re.IGNORECASE)
+
+    def replace_match(match):
+        word = match.group()
+        return mask_char * len(word)
+
+    return pattern.sub(replace_match, text)
+
+def main():
+    parser = argparse.ArgumentParser(description='Mask PII data from text')
+    parser.add_argument('--config', '-c', default=os.path.expanduser('~/.piiprotector_words.txt'),
+                        help='Path to PII words configuration file')
+    parser.add_argument('--mask', '-m', default='*',
+                        help='Character to use for masking (default: *)')
+
+    args = parser.parse_args()
+
+    # Load PII words from config file
+    pii_words = load_pii_words(args.config)
+
+    # Read from stdin
+    input_text = sys.stdin.read()
+
+    # Mask PII words
+    masked_text = mask_pii(input_text, pii_words, args.mask)
+
+    # Output to stdout
+    print(masked_text, end='')
+
+if __name__ == '__main__':
+    main()
