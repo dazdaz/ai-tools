@@ -1,1 +1,1 @@
-./q.py "create a svg file, which is a representation of the famous tourist sites within munich, make it in the style of Google branding" --model gemini-3-pro-preview-11-2025 --timeout 350 --retries 6 --stream --debug
+./query.py "create a svg file, which is a representation of the famous tourist sites within munich, make it in the style of Google branding" --model gemini-3-pro-preview-11-2025 --timeout 350 --retries 6 --stream --debug
